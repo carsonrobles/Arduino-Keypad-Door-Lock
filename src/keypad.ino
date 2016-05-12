@@ -120,6 +120,7 @@ void loop(void) {
 
 bool checkCode(void) {
   int i;
+  
   for (i = 0; i < CODE_LEN; i++)
     if (usrCode[i] != CODE[CODE_LEN - (i + 1)])
       return (false);
@@ -137,16 +138,10 @@ void checkPin(int pin) {
     while (digitalRead(pin) == HIGH);
   }
 }
-/*
-void printCode(void) {
-  Serial.print(usrCode[0]);
-  Serial.print(usrCode[1]);
-  Serial.print(usrCode[2]);
-  Serial.println(usrCode[3]);
-}
-*/
+
 void pushOnCode(int n) {
   int i;
+
   for (i = CODE_LEN - 1; i > 0; i--)
     usrCode[i] = usrCode[i - 1];
 
@@ -155,6 +150,7 @@ void pushOnCode(int n) {
 
 void resetCode() {
   int i;
+
   for (i = 0; i < CODE_LEN; i++)
     usrCode[i] = 0;
 }
