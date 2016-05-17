@@ -1,20 +1,20 @@
-// include Arduino servo library
+/* include Arduino servo library */
 #include <Servo.h>
 
 #include "keypad.h"
 
-// code
+/* code */
 const char CODE[CODE_LEN] = {1, 2, 3, 4};
 
-// servo to open door
+/* servo to open door */
 Servo servo;
 
-// array for user entered code
+/* array for user entered code */
 int usrCode[CODE_LEN];
 
-// initialization
+/* initialization */
 void setup(void) {
-  // set pin modes for all used pins
+  /* set pin modes for all used pins */
   pinMode(BUT_1_PIN, INPUT);
   pinMode(BUT_2_PIN, INPUT);
   pinMode(BUT_3_PIN, INPUT);
@@ -26,47 +26,47 @@ void setup(void) {
 
   pinMode(LED_PIN, OUTPUT);
 
-  // attach servo to its pin
+  /* attach servo to its pin */
   servo.attach(SERVO_PIN);
 
-  // set usrCode to all zeroes
+  /* set usrCode to all zeroes */
   resetCode();
 
-  // start up Serial connection
+  /* start up Serial connection */
   //Serial.begin(9600);
 
-  // wait for Serial to connect
-  //while (!Serial);
+  /* wait for Serial to connect */
+  /*while (!Serial);*/
 
-  // notify that initialization has completed
-  //Serial.println("[init done]");
+  /* notify that initialization has completed */
+  /*Serial.println("[init done]");*/
 }
 
-// continuously called
+/* continuously called */
 void loop(void) {
-  //char str[20];
+  /*char str[20];*/
 
-  //sprintf(str, "locked, unlocked: %d, %d\n", digitalRead(LOCKED_LIMIT), digitalRead(UNLOCKED_LIMIT));
-  //Serial.println(str);
-  //printCode();
+  /*sprintf(str, "locked, unlocked: %d, %d\n", digitalRead(LOCKED_LIMIT), digitalRead(UNLOCKED_LIMIT));*/
+  /*Serial.println(str);*/
+  /*printCode();*/
 
   servoStop();
 
-  //servo.write(LOCKED_POS);
+  /*servo.write(LOCKED_POS);*/
 
-  // check if button 1 was pressed
+  /* check if button 1 was pressed */
   checkPin(BUT_1_PIN);
 
-  // check if button 2 was pressed
+  /* check if button 2 was pressed */
   checkPin(BUT_2_PIN);
 
-  // check if button 3 was pressed
+  /* check if button 3 was pressed */
   checkPin(BUT_3_PIN);
 
-  // check if button 4 was pressed
+  /* check if button 4 was pressed */
   checkPin(BUT_4_PIN);
 
-  // check if enter button was pressed
+  /* check if enter button was pressed */
   if (digitalRead(ENTER_PIN) == HIGH) {
     do
       delay(10);
@@ -110,7 +110,7 @@ void checkPin(int pin) {
   if (digitalRead(pin) == HIGH) {
     pushOnCode(pin - 1);
 
-    // waits for pin to go LOW
+    /* waits for pin to go low */
     do
       delay(10);
     while (digitalRead(pin) == HIGH);
