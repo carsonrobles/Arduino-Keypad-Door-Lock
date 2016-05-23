@@ -2,6 +2,7 @@
 #include <Servo.h>
 
 #include "keypad.h"
+#include "code.h"
 
 /* code */
 const char CODE[CODE_LEN] = {1, 2, 3, 4};
@@ -126,7 +127,7 @@ void pushOnCode(int n) {
   usrCode[0] = n;
 }
 
-void resetCode() {
+void resetCode(void) {
   int i;
 
   for (i = 0; i < CODE_LEN; i++)
